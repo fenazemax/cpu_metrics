@@ -8,12 +8,16 @@ wss.on('connection', async function connection(ws) {
     const usage = await CPUParams.getUserCpuUsage()
     const speed = CPUParams.getUserCoresSpeed()
     const {total, idletime} = CPUParams.getUserTimes()
+    const usedMemory = CPUParams.calculateUsedRAM()
+    const totalRam = CPUParams.totalRAM
 
     ws.send(JSON.stringify({
       cpuUsage: usage,
       cpuSpeed: speed,
       cpuTotalTime: total,
-      cpuIdleTime: idletime
+      cpuIdleTime: idletime,
+      usedMemory,
+      totalRam,
     }))
   }, 1000)
 
