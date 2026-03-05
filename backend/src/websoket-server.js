@@ -1,4 +1,4 @@
-import {CPUParams} from "./cpu-usage.js"
+import {CPUParams, RAMParams} from "./cpu-usage.js"
 import { WebSocketServer } from "ws";
 
 const wss = new WebSocketServer({ port: 8080 })
@@ -8,8 +8,9 @@ wss.on('connection', async function connection(ws) {
     const usage = await CPUParams.getUserCpuUsage()
     const speed = CPUParams.getUserCoresSpeed()
     const {total, idletime} = CPUParams.getUserTimes()
-    const usedMemory = CPUParams.calculateUsedRAM()
-    const totalRam = CPUParams.totalRAM
+    const usedMemory = RAMParams.calculateUsedRAM()
+    const totalRam = RAMParams.totalRAM
+    const ramUsagePercent = RAMParams.getPercentOfUsage()
 
     ws.send(JSON.stringify({
       cpuUsage: usage,
@@ -18,6 +19,7 @@ wss.on('connection', async function connection(ws) {
       cpuIdleTime: idletime,
       usedMemory,
       totalRam,
+      ramUsagePercent,
     }))
   }, 1000)
 

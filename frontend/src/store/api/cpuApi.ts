@@ -7,6 +7,7 @@ interface ICpuData {
   cpuIdleTime: number,
   usedMemory: number,
   totalRam: number,
+  ramUsagePercent: number
 }
 
 export const cpuApi = createApi({
@@ -22,6 +23,7 @@ export const cpuApi = createApi({
           cpuIdleTime: 0,
           totalRam: 0,
           usedMemory: 0,
+          ramUsagePercent: 0,
         } 
       }),
       async onCacheEntryAdded(
@@ -42,6 +44,7 @@ export const cpuApi = createApi({
               draft.cpuIdleTime = data.cpuIdleTime
               draft.totalRam = data.totalRam
               draft.usedMemory = data.usedMemory
+              draft.ramUsagePercent = data.ramUsagePercent
             })
           }
 

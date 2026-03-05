@@ -1,19 +1,7 @@
 import os from 'node:os'
 
 export class CPUParams {
-  static #totalRAM = os.totalmem()
   
-  static get totalRAM() {
-    return this.#totalRAM
-  }
-
-  static calculateUsedRAM() {
-    const memory = this.totalRAM
-    const freeMemory = os.freemem()
-
-    return memory - freeMemory
-  }
-
   static getUserTimes() {
     const cpus = os.cpus()
 
@@ -55,4 +43,21 @@ export class CPUParams {
     return speedObj
   }
 
-} 
+}
+
+export class RAMParams {
+  static #totalRAM = os.totalmem()
+  
+  static get totalRAM() {
+    return this.#totalRAM
+  }
+
+  static calculateUsedRAM() {
+    return this.totalRAM - os.freemem()
+  }
+
+  static getPercentOfUsage() {
+    const usedRam = RAMParams.calculateUsedRAM()
+    return ( usedRam / this.totalRAM ) * 100
+  }
+}
