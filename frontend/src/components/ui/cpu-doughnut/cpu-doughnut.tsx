@@ -43,7 +43,6 @@ export const CpuDoughnut = (props: PropsType) => {
           label1: {
             type: 'doughnutLabel',
             content: content,
-            position: { y: '-50%' },
             font: [{ size: 30, weight: 'bold' }, { size: 30 }],
             color: LABEL_COLOR
           }

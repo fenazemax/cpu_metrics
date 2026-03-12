@@ -18,7 +18,7 @@ export const App = () => {
   } = getChartContent(data)
 
   return (
-    <div>
+    <div className={cl.AppContainer}>
       <div className={cl.AppChartsContainer}>
         <CpuDoughnut 
           data={CPU_LOAD_DATA} 
@@ -30,7 +30,7 @@ export const App = () => {
         />
       </div>
       <div>
-          <InfoTable />
+          <InfoTable data={data} />
       </div>
     </div>
   )
