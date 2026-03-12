@@ -1,6 +1,6 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
-interface ICpuData {
+export interface ICpuData {
   cpuUsage: number
   cpuSpeed: Record<string, number>
   cpuTotalTime: number
