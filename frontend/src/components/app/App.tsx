@@ -1,37 +1,13 @@
-import { useGetCpuDataQuery } from "@/store/api/cpuApi"
-import cl from './App.module.scss'
-import { CpuDoughnut, InfoTable, Loader, NoData } from "@/components/ui"
-import { getChartContent } from "@/utils/getChartContent"
+import { ROUTES } from "@/components/app/constants"
+import { Route, Routes } from "react-router-dom"
 
 export const App = () => {
-  const {data, isLoading} = useGetCpuDataQuery()
   
-  if (isLoading) return <Loader />
-
-  if (!data) return <NoData />
-
-  const {
-    CPU_LOAD_DATA, 
-    CPU_LOAD_CONTENT, 
-    RAM_LOAD_CONTENT, 
-    RAM_LOAD_DATA
-  } = getChartContent(data)
-
   return (
-    <div className={cl.AppContainer}>
-      <div className={cl.AppChartsContainer}>
-        <CpuDoughnut 
-          data={CPU_LOAD_DATA} 
-          content={CPU_LOAD_CONTENT}
-        />
-        <CpuDoughnut 
-          data={RAM_LOAD_DATA}
-          content={RAM_LOAD_CONTENT}
-        />
-      </div>
-      <div>
-          <InfoTable data={data} />
-      </div>
-    </div>
+    <Routes>
+      {ROUTES.map(route => 
+        <Route key={route.path} path={route.path} element={<route.element />} />       
+      )}
+    </Routes>
   )
 }
