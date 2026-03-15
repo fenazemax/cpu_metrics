@@ -10,7 +10,6 @@ body {
   box-sizing: inherit;
 }
 
-
 body {
   margin: 0;
   min-width: 320px;
@@ -24,4 +23,9 @@ body {
   margin: 0 auto;
   padding: 2rem;
   text-align: center;
+}
+
+ul {
+  padding: 0;
+  margin: 0;
 }

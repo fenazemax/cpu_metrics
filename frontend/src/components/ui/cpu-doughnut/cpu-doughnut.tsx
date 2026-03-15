@@ -1,5 +1,5 @@
-import { Doughnut } from 'react-chartjs-2';
-import type { ChartOptions } from "chart.js";
+import { Doughnut } from 'react-chartjs-2'
+import type { ChartOptions } from 'chart.js'
 import cl from './cpu-doghnut.module.scss'
 
 type PropsType = {
@@ -8,11 +8,11 @@ type PropsType = {
 }
 
 export const CpuDoughnut = (props: PropsType) => {
-  const {data, content} = props
+  const { data, content } = props
 
   const LABEL_COLOR = 'white'
 
-  const CHART_COLORS = ['#ebe7e7','#746969']
+  const CHART_COLORS = ['#ebe7e7', '#746969']
 
   const chartData = {
     datasets: [
@@ -21,9 +21,9 @@ export const CpuDoughnut = (props: PropsType) => {
         data: data,
         backgroundColor: CHART_COLORS,
         borderWidth: 0,
-        cutout: "80%"
-      }
-    ]
+        cutout: '80%',
+      },
+    ],
   }
 
   const options: ChartOptions<'doughnut'> = {
@@ -32,10 +32,10 @@ export const CpuDoughnut = (props: PropsType) => {
     maintainAspectRatio: false,
     plugins: {
       legend: {
-        display: false
+        display: false,
       },
       tooltip: {
-        enabled: false
+        enabled: false,
       },
       annotation: {
         // @ts-ignore
@@ -44,16 +44,16 @@ export const CpuDoughnut = (props: PropsType) => {
             type: 'doughnutLabel',
             content: content,
             font: [{ size: 30, weight: 'bold' }, { size: 30 }],
-            color: LABEL_COLOR
-          }
-        }
-      }
-    }
+            color: LABEL_COLOR,
+          },
+        },
+      },
+    },
   }
 
   return (
     <div className={cl.chartContainer}>
-      <Doughnut data={chartData} options={options}/>
+      <Doughnut data={chartData} options={options} />
     </div>
   )
 }

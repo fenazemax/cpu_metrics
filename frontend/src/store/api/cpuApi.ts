@@ -1,21 +1,21 @@
-import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
+import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 
 export interface ICpuData {
   cpuUsage: number
   cpuSpeed: Record<string, number>
   cpuTotalTime: number
-  cpuIdleTime: number,
-  usedMemory: number,
-  totalRam: number,
+  cpuIdleTime: number
+  usedMemory: number
+  totalRam: number
   ramUsagePercent: number
 }
 
 export const cpuApi = createApi({
   reducerPath: 'cpuApi',
-  baseQuery: fetchBaseQuery({baseUrl: '/'}),
+  baseQuery: fetchBaseQuery({ baseUrl: '/' }),
   endpoints: (build) => ({
     getCpuData: build.query<ICpuData, void>({
-      queryFn: () => ({ 
+      queryFn: () => ({
         data: {
           cpuUsage: 0,
           cpuSpeed: {},
@@ -24,12 +24,9 @@ export const cpuApi = createApi({
           totalRam: 0,
           usedMemory: 0,
           ramUsagePercent: 0,
-        } 
+        },
       }),
-      async onCacheEntryAdded(
-        _,
-        { updateCachedData, cacheDataLoaded, cacheEntryRemoved }
-      ) {
+      async onCacheEntryAdded(_, { updateCachedData, cacheDataLoaded, cacheEntryRemoved }) {
         const ws = new WebSocket('ws://localhost:8080')
         try {
           await cacheDataLoaded
@@ -49,15 +46,15 @@ export const cpuApi = createApi({
           }
 
           ws.addEventListener('message', listener)
-        } catch (error)  {
+        } catch (error) {
           console.error(error)
         }
         await cacheEntryRemoved
 
         ws.close()
-      }
-    })
-  })
+      },
+    }),
+  }),
 })
 
 export const { useGetCpuDataQuery } = cpuApi

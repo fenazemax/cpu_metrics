@@ -1,4 +1,4 @@
-import type { ICpuData } from "@/store/api/cpuApi";
+import type { ICpuData } from '@/store/api/cpuApi'
 
 export const getChartContent = (data: ICpuData) => {
   const CPU_LOAD_DATA = [Math.round(data.cpuUsage), Math.round(100 - data.cpuUsage)]
@@ -13,7 +13,6 @@ export const getChartContent = (data: ICpuData) => {
     CPU_LOAD_DATA,
     CPU_LOAD_CONTENT,
     RAM_LOAD_CONTENT,
-    RAM_LOAD_DATA
+    RAM_LOAD_DATA,
   }
-
 }

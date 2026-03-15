@@ -7,9 +7,12 @@
 }
 
 .infoContainer {
-  user-select: none;
   display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 30px;
   gap: 10px;
+  user-select: none;
 }
 
 .infoItem {
